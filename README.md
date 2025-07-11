@@ -1,4 +1,4 @@
-# Calculadora Beta
+# Calculadora Estilo MacOS
 
 Una calculadora web moderna con diseño inspirado en la calculadora de macOS.
 
