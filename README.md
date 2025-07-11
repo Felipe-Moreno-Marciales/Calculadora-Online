@@ -101,9 +101,6 @@ Esta calculadora replica fielmente la experiencia de la calculadora de macOS:
 4. Sube tu rama (`git push origin caracteristica/nueva-funcion`)
 5. Abre un Pull Request
 
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
 
 ## 👨‍💻 Autor
 
