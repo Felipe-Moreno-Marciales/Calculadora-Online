@@ -49,13 +49,15 @@ calculadora-beta/
 ### Instalación
 1. Clona este repositorio:
    ```bash
-   git clone https://github.com/Felipe-Moreno-Marciales/calculadora-beta.git
+   git clone https://github.com/Felipe-Moreno-Marciales/Calculadora-Online
    ```
 2. Navega al directorio del proyecto:
    ```bash
-   cd calculadora-beta
+   cd Calculadora-Online
    ```
 3. Abre el archivo `index.html` en tu navegador web
+
+4. Abra la calculadora desde el siguiente enlace `https://felipe-moreno-marciales.github.io/Calculadora-Online/` en tu navegador web
 
 ### Controles
 
