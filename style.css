@@ -1,99 +1,164 @@
-/* Estilos generales del cuerpo */
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #222;
-  font-family: 'Helvetica Neue', sans-serif;
-  margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: linear-gradient(135deg, #1e1e1e, #2d2d2d);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
 }
 
-/* Contenedor principal de la calculadora */
 .calculator {
-  width: 320px;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  background-color: #333;
+    background: #1c1c1e;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    width: 320px;
 }
 
-/* Pantalla de la calculadora */
-.calculator .display {
-  background-color: #333;
-  color: white;
-  text-align: right;
-  padding: 20px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  /* --- ÚNICO CAMBIO AQUÍ --- */
-  min-height: 118px; /* Aumentado de 80px. Esto solo afecta la altura, no el estilo. */
-  overflow: hidden;
-  word-wrap: break-word;
-  word-break: break-all;
+.display {
+    background: transparent;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    text-align: right;
+    min-height: 80px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
 
-/* Texto dentro de la pantalla */
-.calculator .display .display-text {
-  font-size: 48px;
-  font-weight: 300;
-  line-height: 1.2;
-  transition: font-size 0.2s ease-in-out;
+.display-text {
+    color: white;
+    font-size: 48px;
+    font-weight: 200;
+    letter-spacing: -1px;
+    word-break: break-all;
+    max-width: 100%;
+    overflow: hidden;
 }
 
-/* Contenedor de los botones */
-.calculator .buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
 }
 
-/* Estilo general de los botones */
-.calculator .btn {
-  border: none;
-  background-color: #505050;
-  color: white;
-  font-size: 24px;
-  padding: 20px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80px;
+.btn {
+    border: none;
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    font-size: 24px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    outline: none;
+    font-family: inherit;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
-/* Efecto hover para todos los botones */
-.calculator .btn:hover {
-  background-color: #666;
+.btn:active {
+    transform: scale(0.95);
 }
 
-/* Estilo para botones de función (AC, +/-, %) */
-.calculator .btn.function {
-  background-color: #404040;
+/* Botones numéricos y decimal - gris oscuro */
+.btn.number {
+    background: #333333;
+    color: white;
 }
 
-/* Estilo para botones de operador (+, -, ×, ÷, =) */
-.calculator .btn.operator {
-  background-color: #ff9500;
+.btn.number:hover {
+    background: #404040;
 }
 
-.calculator .btn.operator:hover {
-  background-color: #ffb703;
+.btn.number:active {
+    background: #505050;
 }
 
-/* Estilo para el botón de operador activo (cuando se selecciona) */
-.calculator .btn.operator.active {
-  background-color: #fff;
-  color: #ff9500;
+/* Botones de funciones superiores - gris claro */
+.btn.function {
+    background: #a6a6a6;
+    color: black;
+    font-weight: 500;
 }
 
-/* Estilo específico para el botón cero para que ocupe dos columnas */
-.calculator .btn[data-number="0"] {
-  grid-column: span 2;
-  justify-content: flex-start;
-  padding-left: 30px;
+.btn.function:hover {
+    background: #b8b8b8;
 }
+
+.btn.function:active {
+    background: #999999;
+}
+
+/* Botones de operadores - naranja */
+.btn.operator {
+    background: #ff9500;
+    color: white;
+    font-weight: 500;
+}
+
+.btn.operator:hover {
+    background: #ffb143;
+}
+
+.btn.operator:active,
+.btn.operator.active {
+    background: white;
+    color: #ff9500;
+}
+
+/* Botón 0 - doble ancho */
+.btn.zero {
+    grid-column: span 2;
+    border-radius: 32.5px;
+    width: 142px;
+    justify-content: flex-start;
+    padding-left: 25px;
+}
+
+/* Efectos de sombra para botones */
+.btn {
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive para pantallas más pequeñas */
+@media (max-width: 380px) {
+    .calculator {
+        width: 95vw;
+        padding: 15px;
+    }
+
+    .btn {
+        width: 60px;
+        height: 60px;
+        font-size: 22px;
+    }
+
+    .btn.zero {
+        width: 132px;
+    }
+
+    .display-text {
+        font-size: 42px;
+    }
