@@ -18,7 +18,6 @@ body {
   background-color: #333;
 }
 
-/* --- SECCIÓN MODIFICADA --- */
 /* Pantalla de la calculadora */
 .calculator .display {
   background-color: #333;
@@ -30,7 +29,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: 118px; /* CAMBIO: Aumentado de 80px a 118px para añadir ~1cm de altura */
+  /* --- ÚNICO CAMBIO AQUÍ --- */
+  min-height: 118px; /* Aumentado de 80px. Esto solo afecta la altura, no el estilo. */
   overflow: hidden;
   word-wrap: break-word;
   word-break: break-all;
