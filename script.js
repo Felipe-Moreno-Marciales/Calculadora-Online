@@ -20,31 +20,42 @@ class Calculator {
     }
 
     handleButtonClick(button) {
-        // CAMBIO: Se limpian los operadores activos ANTES de procesar el nuevo clic.
-        // Esto asegura que al tocar un número, el operador anterior se desactive.
-        if (button.dataset.number || button.dataset.action === 'equals' || button.dataset.action === 'clear') {
-            this.updateOperatorButtons(null);
-        }
-
         if (button.dataset.number) {
             this.inputNumber(button.dataset.number);
         } else if (button.dataset.action) {
             this.handleAction(button.dataset.action);
         }
-
+        
+        // CAMBIO: Ya no es necesario llamar a updateOperatorButtons desde aquí.
         this.updateDisplay();
     }
 
     handleKeyboard(event) {
-        const key = event.key;
-        const button = document.querySelector(`[data-key="${key}"]`);
-        if (button) {
+        // Mapeo de teclas a botones para reutilizar la lógica
+        const keyMap = {
+            '0': '0', '1': '1', '2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9',
+            '.': 'decimal', ',': 'decimal',
+            '+': 'add',
+            '-': 'subtract',
+            '*': 'multiply',
+            '/': 'divide',
+            '%': 'percent',
+            'Enter': 'equals', '=': 'equals',
+            'Escape': 'clear', 'c': 'clear',
+            'Backspace': 'delete' // Opcional: para manejar borrado
+        };
+        const action = keyMap[event.key];
+        
+        if (action) {
             event.preventDefault();
-            this.handleButtonClick(button);
+            const button = document.querySelector(`[data-action="${action}"]`) || document.querySelector(`[data-number="${action}"]`);
+            if (button) this.handleButtonClick(button);
         }
     }
 
     inputNumber(number) {
+        // CORRECCIÓN: Al introducir un número, se debe limpiar el estado del operador
+        // para que la siguiente operación en cadena funcione correctamente.
         if (this.waitingForNewInput) {
             this.currentInput = number;
             this.waitingForNewInput = false;
@@ -74,7 +85,8 @@ class Calculator {
         this.previousInput = null;
         this.operator = null;
         this.waitingForNewInput = false;
-        this.updateOperatorButtons(null); // Asegura que no haya operadores activos
+        // CAMBIO: Nos aseguramos de que ningún botón quede activo al limpiar.
+        this.updateOperatorButtons(null);
     }
 
     toggleSign() {
@@ -103,9 +115,9 @@ class Calculator {
         this.previousInput = this.currentInput;
         this.operator = newOperator;
         this.waitingForNewInput = true;
-        
-        // CAMBIO: Se actualiza el estado visual del operador JUSTO después de seleccionarlo.
-        this.updateOperatorButtons(this.operator);
+        // CAMBIO: Inmediatamente después de establecer un operador,
+        // llamamos a la función que quita el resaltado.
+        this.updateOperatorButtons(null);
     }
 
     calculate() {
@@ -132,12 +144,15 @@ class Calculator {
             this.previousInput = null;
             this.waitingForNewInput = true;
         }
+        // CAMBIO: Nos aseguramos de que ningún botón quede activo al calcular.
+        this.updateOperatorButtons(null);
     }
 
     formatResult(result) {
         const resultString = result.toString();
         if (resultString.length > 9) {
-            return result.toPrecision(6);
+            // Usar toPrecision para un redondeo más inteligente
+            return parseFloat(result.toPrecision(6)).toString();
         }
         return resultString;
     }
@@ -145,23 +160,26 @@ class Calculator {
     updateDisplay() {
         let displayValue = this.currentInput;
         if (displayValue.length > 9) {
-            displayValue = parseFloat(displayValue).toPrecision(6);
+            // Truncar para visualización si es muy largo y no es exponencial
+            if (!displayValue.includes('e')) {
+                 displayValue = displayValue.substring(0, 9);
+            }
         }
         this.display.textContent = displayValue;
         this.display.style.fontSize = displayValue.length > 6 ? '2.5rem' : '3.5rem';
     }
 
+    /**
+     * CAMBIO: Esta función ahora solo sirve para *quitar* la clase 'active'.
+     * Ya no la añade. Esto elimina el estado resaltado persistente.
+     * @param {string | null} activeOperator - Se ignora, pero se mantiene por compatibilidad de llamadas.
+     */
     updateOperatorButtons(activeOperator) {
         document.querySelectorAll('.btn.operator').forEach(btn => {
-            // CAMBIO: La lógica es más simple. Si el 'data-action' del botón coincide con
-            // el operador activo pasado a la función, se añade la clase. Si no, se quita.
-            if (btn.dataset.action === activeOperator) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
+            btn.classList.remove('active');
         });
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => new Calculator());
+
