@@ -31,6 +31,7 @@ class Calculator {
         
         // Configurar los event listeners
         this.initEventListeners();
+        this.updateDisplay(); // CORRECCIÓN: Llamada inicial para asegurar el estado visual correcto
     }
     
     /**
@@ -63,7 +64,7 @@ class Calculator {
         
         // Actualizar la interfaz
         this.updateDisplay();
-        this.updateOperatorButtons();
+        // La llamada a updateOperatorButtons se gestionará dentro de los métodos específicos
     }
     
     /**
@@ -97,7 +98,7 @@ class Calculator {
         
         // Actualizar la interfaz
         this.updateDisplay();
-        this.updateOperatorButtons();
+         // La llamada a updateOperatorButtons se gestionará dentro de los métodos específicos
     }
     
     /**
@@ -112,6 +113,11 @@ class Calculator {
         } else {
             // Agregar dígito a la entrada actual
             this.currentInput = this.currentInput === '0' ? number : this.currentInput + number;
+        }
+        // CORRECCIÓN: Si se introduce un número, el operador deja de estar "activo" visualmente
+        // hasta que se calcule o se seleccione otro operador.
+        if (this.operator && !this.waitingForNewInput) {
+             this.updateOperatorButtons(false); // Pasamos false para que no se active ninguno
         }
     }
     
@@ -154,6 +160,7 @@ class Calculator {
         this.previousInput = null;
         this.operator = null;
         this.waitingForNewInput = false;
+        this.updateOperatorButtons(); // CORRECCIÓN: Actualizar estado visual
     }
     
     /**
@@ -207,6 +214,7 @@ class Calculator {
         this.operator = newOperator;
         this.previousInput = this.currentInput;
         this.waitingForNewInput = true;
+        this.updateOperatorButtons(); // CORRECCIÓN: Actualizar estado visual
     }
     
     /**
@@ -248,7 +256,11 @@ class Calculator {
             this.currentInput = this.formatResult(result);
             this.operator = null;
             this.previousInput = null;
-            this.waitingForNewInput = true;
+            // CORRECCIÓN: waitingForNewInput se debe quedar en true después de calcular
+            this.waitingForNewInput = true; 
+            
+            this.updateOperatorButtons(); // CORRECCIÓN: Actualizar estado visual
+            this.updateDisplay(); // CORRECCIÓN: Asegurarse que el display se actualiza post-cálculo
         }
     }
     
@@ -304,13 +316,13 @@ class Calculator {
      * Actualiza el estado visual de los botones de operadores
      * Resalta el operador actualmente seleccionado
      */
-    updateOperatorButtons() {
+    updateOperatorButtons(setActive = true) { // CORRECCIÓN: Parámetro opcional
         // Remover estado activo de todos los operadores
         const operatorButtons = document.querySelectorAll('.btn.operator');
         operatorButtons.forEach(btn => btn.classList.remove('active'));
         
-        // Resaltar el operador actual si existe
-        if (this.operator) {
+        // Resaltar el operador actual si existe y setActive es true
+        if (this.operator && setActive) {
             const activeButton = document.querySelector(`[data-action="${this.operator}"]`);
             if (activeButton) {
                 activeButton.classList.add('active');
