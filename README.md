@@ -105,4 +105,3 @@ Esta calculadora replica fielmente la experiencia de la calculadora de macOS:
 ---
 
 > **Nota**: Esta calculadora fue creada como un proyecto educativo para demostrar las mejores prácticas de desarrollo web frontend con HTML, CSS y JavaScript vanilla.
-
