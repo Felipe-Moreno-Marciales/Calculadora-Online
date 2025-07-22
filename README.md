@@ -93,15 +93,6 @@ Esta calculadora replica fielmente la experiencia de la calculadora de macOS:
 - ✅ **Dispositivos móviles**: iOS, Android
 - ✅ **Diseño responsivo**: Se adapta a diferentes tamaños de pantalla
 
-## 🤝 Contribuir
-
-1. Haz un fork del proyecto
-2. Crea una rama para tu característica (`git checkout -b caracteristica/nueva-funcion`)
-3. Realiza tus cambios y haz commit (`git commit -am 'Agregar nueva función'`)
-4. Sube tu rama (`git push origin caracteristica/nueva-funcion`)
-5. Abre un Pull Request
-
-
 ## 👨‍💻 Autor
 
 **Felipe Moreno Marciales** - [GitHub](https://github.com/Felipe-Moreno-Marciales)
@@ -109,3 +100,4 @@ Esta calculadora replica fielmente la experiencia de la calculadora de macOS:
 ---
 
 > **Nota**: Esta calculadora fue creada como un proyecto educativo para demostrar las mejores prácticas de desarrollo web frontend con HTML, CSS y JavaScript vanilla.
+
