@@ -2,6 +2,9 @@
 
 Una calculadora web moderna con diseño inspirado en la calculadora de macOS.
 
+<img width="384" height="588" alt="image" src="https://github.com/user-attachments/assets/d14a7b85-3f19-41c8-bace-1ea1699e3153" />
+
+
 ## 🚀 Características
 
 ### **Diseño Visual**
