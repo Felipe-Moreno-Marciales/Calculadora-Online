@@ -162,4 +162,3 @@ class Calculator {
 // Para que el teclado funcione, asegúrate de que tu HTML tenga los `data-key`.
 // Ejemplo: <button class="btn operator" data-action="add" data-key="+">+</button>
 document.addEventListener('DOMContentLoaded', () => new Calculator());
-
