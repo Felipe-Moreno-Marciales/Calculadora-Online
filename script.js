@@ -305,17 +305,12 @@ class Calculator {
      * Resalta el operador actualmente seleccionado
      */
     updateOperatorButtons() {
-        // Remover estado activo de todos los operadores
+        // Remover estado activo de todos los operadores para que no se queden resaltados.
         const operatorButtons = document.querySelectorAll('.btn.operator');
         operatorButtons.forEach(btn => btn.classList.remove('active'));
 
-        // Resaltar el operador actual si existe
-        if (this.operator) {
-            const activeButton = document.querySelector(`[data-action="${this.operator}"]`);
-            if (activeButton) {
-                activeButton.classList.add('active');
-            }
-        }
+        // Se ha eliminado la lógica que agregaba la clase 'active' de forma persistente.
+        // Ahora los botones solo reaccionarán al clic gracias al CSS.
     }
 }
 
