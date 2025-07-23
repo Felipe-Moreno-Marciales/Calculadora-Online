@@ -1,6 +1,6 @@
 <img width="384" height="588" alt="image" src="https://github.com/user-attachments/assets/d14a7b85-3f19-41c8-bace-1ea1699e3153" />
 
-<p>
+
 [**🚀 Abrir Calculadora en Vivo 🚀**](https://felipe-moreno-marciales.github.io/Calculadora-Online/)
 
 
