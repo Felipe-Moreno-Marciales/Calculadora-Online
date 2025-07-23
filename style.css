@@ -55,8 +55,9 @@ body {
 .btn {
     border: none;
     border-radius: 50%;
-    width: 65px;
-    height: 65px;
+    /* Ajustamos el tamaño para que quepa en el contenedor */
+    width: 62px;
+    height: 62px;
     font-size: 24px;
     font-weight: 400;
     cursor: pointer;
@@ -123,10 +124,11 @@ body {
 /* Botón 0 - doble ancho */
 .btn.zero {
     grid-column: span 2;
-    border-radius: 32.5px;
-    width: 142px;
+    border-radius: 31px;
+    /* Ajustamos el ancho del botón cero (62*2 + 12 de gap) */
+    width: 136px;
     justify-content: flex-start;
-    padding-left: 25px;
+    padding-left: 24px;
 }
 
 /* Efectos de sombra para botones */
