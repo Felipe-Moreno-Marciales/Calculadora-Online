@@ -1,4 +1,5 @@
-<img width="384" height="588" alt="image" src="https://github.com/user-attachments/assets/d14a7b85-3f19-41c8-bace-1ea1699e3153" />
+<img width="427" height="628" alt="image" src="https://github.com/user-attachments/assets/97c8c30c-2da4-49f8-b9a0-6321c77f6115" />
+
 
 
 [**🚀 Abrir Calculadora Online 🚀**](https://felipe-moreno-marciales.github.io/Calculadora-Online/)
